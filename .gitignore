@@ -41,3 +41,7 @@ Thumbs.db
 
 # Prisma
 server/prisma/migrations/
+
+# Markdown files (except README.md)
+*.md
+!README.md
