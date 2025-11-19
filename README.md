@@ -15,7 +15,7 @@
 **Frontend:** http://localhost:3000  
 **Backend API:** http://localhost:5000
 
-### Login Credentials
+### Login Demo Credentials
 
 | Role | Email | Password |
 |------|-------|----------|
@@ -54,18 +54,6 @@
 - **Database:** PostgreSQL 16, Prisma ORM
 - **Authentication:** JWT + bcrypt
 - **AI:** Ready for OpenAI/Claude integration
-
----
-
-## 📊 System Status
-
-**Overall Completion:** 80%
-
-- ✅ Database Schema: 100%
-- ✅ Backend API: 100%
-- ✅ Frontend UI: 80%
-- ✅ Sample Data: 100%
-- ⏳ AI Integration: 0% (placeholder ready)
 
 ---
 
