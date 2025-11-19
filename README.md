@@ -3,7 +3,7 @@
 > **Personalized, accessible education powered by AI**
 
 [![Status](https://img.shields.io/badge/status-operational-success)](http://localhost:3000)
-[![Completion](https://img.shields.io/badge/completion-80%25-blue)](FINAL_STATUS.md)
+[![Completion](https://img.shields.io/badge/completion-50%25-blue)](FINAL_STATUS.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 ---
