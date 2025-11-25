@@ -1,3 +1,5 @@
+// server\prisma\schema_old_tisa_labs.prisma
+
 generator client {
   provider = "prisma-client-js"
 }

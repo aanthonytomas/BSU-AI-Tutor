@@ -1,7 +1,8 @@
+// client/src/pages/Login.tsx
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { GraduationCap, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Mail, Lock, AlertCircle } from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -20,124 +21,103 @@ export default function Login() {
       await login(email, password);
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Login failed. Please try again.');
+      setError(err.response?.data?.error || 'Login failed. Please check your email and password.');
     } finally {
       setLoading(false);
     }
   };
 
-  const quickLogin = (userEmail: string, userPassword: string) => {
-    setEmail(userEmail);
-    setPassword(userPassword);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
-        {/* Logo and Title */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-4">
-            <GraduationCap className="w-10 h-10 text-white" />
+    <div className="min-h-screen bg-gradient-to-b from-[#06251a] via-[#063021] to-[#095535] flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 via-transparent to-green-800/20"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-500/10 via-transparent to-transparent"></div>
+
+      <div className="max-w-md w-full relative z-10">
+        {/* Logo + Title */}
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-6">
+            <img src="/icon-logo.png" alt="TISA Logo" className="w-24 h-24 object-contain drop-shadow-2xl" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            AI Inclusive Learning
-          </h1>
-          <p className="text-gray-600">
-            Personalized education for every learner
-          </p>
+          <h1 className="text-5xl font-bold text-green-50 mb-3">TISA</h1>
+          <p className="text-green-300 text-lg">Towards Intelligence Student Assistant</p>
         </div>
 
-        {/* Login Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+        {/* Login Card */}
+        <div className="bg-green-900/40 backdrop-blur-2xl rounded-3xl border border-green-700/60 shadow-2xl p-8">
+          <h2 className="text-3xl font-bold text-green-100 text-center mb-8">
             Welcome Back
           </h2>
 
+          {/* Error Alert */}
           {error && (
-            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-red-800">{error}</p>
+            <div className="mb-6 p-4 bg-red-900/60 border border-red-600/70 rounded-xl flex items-start gap-3 shadow-lg">
+              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-red-200">{error}</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
+              <label className="block text-green-200 font-medium mb-2">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400" />
                 <input
-                  id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  placeholder="you@example.com"
+                  className="w-full pl-12 pr-5 py-4 bg-green-800/50 border border-green-600 rounded-xl text-green-100 placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition text-lg"
+                  placeholder="you@bulsu.edu.ph"
                   required
                 />
               </div>
             </div>
 
+            {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
+              <label className="block text-green-200 font-medium mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400" />
                 <input
-                  id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full pl-12 pr-5 py-4 bg-green-800/50 border border-green-600 rounded-xl text-green-100 placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition text-lg"
                   placeholder="••••••••"
                   required
                 />
               </div>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-5 bg-gradient-to-r from-green-500 to-emerald-600 text-green-950 font-bold text-xl rounded-xl shadow-2xl hover:from-green-400 hover:to-emerald-500 transform hover:scale-105 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          {/* Quick Login Options */}
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-600 mb-3">Quick login for demo:</p>
-            <div className="space-y-2">
-              <button
-                onClick={() => quickLogin('student1@ailearning.com', 'student123')}
-                className="w-full text-left px-4 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg text-sm transition-colors"
+          {/* Sign Up Link */}
+          <div className="mt-8 text-center">
+            <p className="text-green-300 text-lg">
+              Don't have an account?{' '}
+              <Link
+                to="/Signup"
+                className="text-green-100 font-bold hover:text-white underline decoration-2 underline-offset-4 transition-all"
               >
-                <span className="font-medium text-blue-900">Student</span>
-                <span className="text-blue-700 ml-2">(Visual Learner)</span>
-              </button>
-              <button
-                onClick={() => quickLogin('teacher@ailearning.com', 'teacher123')}
-                className="w-full text-left px-4 py-2 bg-green-50 hover:bg-green-100 rounded-lg text-sm transition-colors"
-              >
-                <span className="font-medium text-green-900">Teacher</span>
-                <span className="text-green-700 ml-2">(Sarah Johnson)</span>
-              </button>
-              <button
-                onClick={() => quickLogin('admin@ailearning.com', 'admin123')}
-                className="w-full text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg text-sm transition-colors"
-              >
-                <span className="font-medium text-purple-900">Admin</span>
-                <span className="text-purple-700 ml-2">(Full Access)</span>
-              </button>
-            </div>
+                Create one now
+              </Link>
+            </p>
           </div>
         </div>
 
         {/* Footer */}
-        <p className="text-center text-sm text-gray-600 mt-6">
-          Every learner deserves quality education, tailored to their needs
+        <p className="text-center text-green-400 text-sm mt-8 opacity-80">
+          © 2025 Bulacan State University • TISA
         </p>
       </div>
     </div>
