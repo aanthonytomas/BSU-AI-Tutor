@@ -1,3 +1,5 @@
+
+// C:\Users\John Jeslhee\bulsu ai\BSU-AI-Tutor\server\src\routes\auth.routes.ts
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { register, login, getCurrentUser } from '../controllers/auth.controller';

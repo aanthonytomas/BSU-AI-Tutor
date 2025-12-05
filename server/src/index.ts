@@ -7,6 +7,11 @@ import courseRoutes from './routes/course.routes';
 import lessonRoutes from './routes/lesson.routes';
 import aiTutorRoutes from './routes/ai-tutor.routes';
 import dashboardRoutes from './routes/dashboard.routes';
+import chatSessionRoutes from './routes/chat-session.routes';
+import adminRoutes from './routes/adminRoutes';
+import adminFacultyRoutes from './routes/adminFaculty.routes';
+import curriculumRoutes from './routes/adminCurriculum.routes';
+
 
 dotenv.config();
 
@@ -18,7 +23,13 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // API Routes
+
 app.use('/api/auth', authRoutes);
+app.use('/api/chat-sessions', chatSessionRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/admin', adminFacultyRoutes);
+
+app.use('/api/admin/curriculum', curriculumRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/ai-tutor', aiTutorRoutes);

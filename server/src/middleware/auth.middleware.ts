@@ -1,9 +1,11 @@
+// server/src/middleware/auth.middleware.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
   user?: {
-    userId: string;
+    id: string;        // ← NEW: This is what we need
+    userId: string;    // ← Keep old one for backward compatibility
     email: string;
     role: string;
   };
@@ -18,9 +20,9 @@ export const authenticateToken = (
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    res.status(401).json({ error: 'Access token required' });
-    return;
-  }
+  res.status(401).json({ error: 'Access token required' });
+  return;
+}
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as {
@@ -28,11 +30,15 @@ export const authenticateToken = (
       email: string;
       role: string;
     };
+
+    // ← CRITICAL: Add .id here!
     req.user = {
-      userId: decoded.userId,
+      id: decoded.userId,      // ← This makes req.user!.id work
+      userId: decoded.userId,  // ← Keep old one if other code uses it
       email: decoded.email,
       role: decoded.role,
     };
+
     next();
   } catch (error) {
     res.status(403).json({ error: 'Invalid or expired token' });
